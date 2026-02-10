@@ -1,548 +1,239 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Past Simple vs Past Continuous Quiz</title>
+    <title>Navigate Pre-Intermediate: Past Tense Challenge</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 700px;
             width: 100%;
-            padding: 40px;
+            padding: 30px;
         }
 
-        h1 {
-            color: #4facfe;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-
-        .timer {
-            text-align: center;
-            font-size: 1.5em;
-            color: #e74c3c;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+        h1 { color: #2980b9; text-align: center; margin-bottom: 20px; }
+        
+        .timer { text-align: center; font-size: 1.2em; color: #e74c3c; font-weight: bold; margin-bottom: 15px; }
 
         .progress-container {
-            width: 100%;
-            height: 30px;
-            background: #ecf0f1;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
+            width: 100%; height: 12px; background: #eee; border-radius: 10px; margin-bottom: 25px; overflow: hidden;
+        }
+        .progress-bar { height: 100%; background: #3498db; width: 0%; transition: 0.4s; }
+
+        .question-text { font-size: 1.25em; line-height: 1.6; color: #34495e; margin-bottom: 25px; }
+
+        .answer-input {
+            border: none; border-bottom: 2px solid #3498db; padding: 5px;
+            font-size: 1em; width: 160px; text-align: center; outline: none; color: #2980b9; font-weight: bold;
         }
 
-        .progress-bar-correct {
-            height: 100%;
-            background: linear-gradient(90deg, #27ae60, #2ecc71);
-            transition: width 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .progress-bar-incorrect {
-            height: 100%;
-            background: linear-gradient(90deg, #c0392b, #e74c3c);
-            transition: width 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .progress-text {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2c3e50;
-            font-weight: bold;
-            pointer-events: none;
-        }
-
-        .question-container {
-            margin-bottom: 30px;
-        }
-
-        .question-number {
-            color: #4facfe;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-
-        .question-text {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        .blank {
-            color: #4facfe;
-            font-weight: bold;
-        }
-
-        .options {
-            display: grid;
-            gap: 15px;
-        }
-
-        .option {
-            background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-        }
-
-        .option:hover {
-            background: #e9ecef;
-            border-color: #4facfe;
-            transform: translateX(5px);
-        }
-
-        .option.selected {
-            background: #4facfe;
-            color: white;
-            border-color: #4facfe;
-        }
-
-        .option.correct {
-            background: #27ae60;
-            color: white;
-            border-color: #27ae60;
-        }
-
-        .option.incorrect {
-            background: #e74c3c;
-            color: white;
-            border-color: #e74c3c;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
+        .nav-buttons { display: flex; justify-content: flex-end; }
 
         button {
-            background: #4facfe;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            background: #3498db; color: white; border: none; padding: 12px 25px;
+            border-radius: 5px; cursor: pointer; font-size: 1em; font-weight: bold;
         }
 
-        button:hover {
-            background: #3a8fd9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        button:hover { background: #2980b9; }
+
+        .results { text-align: center; display: none; }
+        .score-circle { 
+            width: 120px; height: 120px; border-radius: 50%; border: 5px solid #3498db;
+            line-height: 110px; font-size: 2em; margin: 20px auto; color: #2980b9; font-weight: bold;
         }
 
-        button:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .results {
-            text-align: center;
-            display: none;
-        }
-
-        .results h2 {
-            color: #4facfe;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        .score {
-            font-size: 3em;
-            color: #27ae60;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .score.fail {
-            color: #e74c3c;
-        }
-
-        .start-screen {
-            text-align: center;
-        }
-
-        .start-screen p {
-            font-size: 1.2em;
-            margin: 20px 0;
-            color: #555;
-        }
-
-        .start-button {
-            font-size: 1.3em;
-            padding: 15px 50px;
-            margin-top: 20px;
-        }
-
-        .quiz-content {
-            display: none;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #4facfe;
+        #startScreen input {
+            width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 5px;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Past Simple vs Past Continuous Quiz</h1>
-        
-        <div class="start-screen" id="startScreen">
-            <p>Test your knowledge of past tenses!</p>
-            <p>📝 10 questions per attempt</p>
-            <p>⏱️ 5 minutes to complete</p>
-            <p>🎯 Choose the correct form of the verb</p>
-            
-            <div class="form-group">
-                <label for="studentName">Your Name:</label>
-                <input type="text" id="studentName" placeholder="Enter your name" required>
-            </div>
-            
-            <button class="start-button" onclick="startQuiz()">Start Quiz</button>
+        <div id="startScreen">
+            <h1>Grammar Check</h1>
+            <p style="text-align:center">Past Simple vs. Past Continuous</p>
+            <input type="text" id="studentName" placeholder="Enter your full name">
+            <button style="width:100%" onclick="startQuiz()">Start Attempt</button>
         </div>
 
-        <div class="quiz-content" id="quizContent">
-            <div class="timer" id="timer">Time: 5:00</div>
-            
-            <div class="progress-container">
-                <div class="progress-bar-correct" id="progressBarCorrect"></div>
-                <div class="progress-bar-incorrect" id="progressBarIncorrect"></div>
-                <div class="progress-text" id="progressText">0/10</div>
-            </div>
-
-            <div class="question-container" id="questionContainer">
-                <div class="question-number" id="questionNumber">Question 1</div>
-                <div class="question-text" id="questionText"></div>
-                <div class="options" id="optionsContainer"></div>
-            </div>
-
+        <div id="quizContent" style="display:none">
+            <div class="timer" id="timer">05:00</div>
+            <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+            <div id="questionNumber" style="font-weight:bold; color:#7f8c8d; margin-bottom:10px;"></div>
+            <div class="question-text" id="questionText"></div>
             <div class="nav-buttons">
-                <button id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
-                <button id="nextBtn" onclick="nextQuestion()">Next</button>
-                <button id="submitBtn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+                <button id="nextBtn" onclick="nextQuestion()">Next Question</button>
             </div>
         </div>
 
-        <div class="results" id="results">
-            <h2>Quiz Completed!</h2>
-            <div class="score" id="finalScore"></div>
-            <p id="resultMessage"></p>
-            <button onclick="location.reload()">Take Quiz Again</button>
+        <div id="results" class="results">
+            <h1>Well Done!</h1>
+            <div class="score-circle" id="finalScore"></div>
+            <p id="feedbackText"></p>
+            <button onclick="location.reload()" style="margin-top:20px">Restart Quiz</button>
         </div>
     </div>
 
+    <audio id="correctSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
+    <audio id="incorrectSound" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"></audio>
+
     <script>
         const questionBank = [
-            {q: "As I ___ (sleep), I heard a loud noise outside.", verb: "sleep", options: ["slept", "was sleeping", "am sleeping", "have slept"], correct: "was sleeping"},
-            {q: "When I ___ (wash) dishes, I broke my favourite cup.", verb: "wash", options: ["washed", "was washing", "am washing", "have washed"], correct: "was washing"},
-            {q: "Natalia ___ (watch) TV when her boyfriend arrived.", verb: "watch", options: ["watched", "was watching", "watches", "has watched"], correct: "was watching"},
-            {q: "While she ___ (cook) dinner, the phone rang.", verb: "cook", options: ["cooked", "was cooking", "cooks", "has cooked"], correct: "was cooking"},
-            {q: "I ___ (read) a book when suddenly the lights went out.", verb: "read", options: ["read", "was reading", "am reading", "have read"], correct: "was reading"},
-            {q: "They ___ (play) football when it started to rain.", verb: "play", options: ["played", "were playing", "play", "have played"], correct: "were playing"},
-            {q: "He ___ (drive) to work when he saw the accident.", verb: "drive", options: ["drove", "was driving", "drives", "has driven"], correct: "was driving"},
-            {q: "We ___ (have) dinner when someone knocked on the door.", verb: "have", options: ["had", "were having", "have", "has had"], correct: "were having"},
-            {q: "She ___ (study) when her friend called her.", verb: "study", options: ["studied", "was studying", "studies", "has studied"], correct: "was studying"},
-            {q: "I ___ (walk) in the park when I met my old teacher.", verb: "walk", options: ["walked", "was walking", "walk", "have walked"], correct: "was walking"},
-            {q: "While they ___ (wait) for the bus, it began to snow.", verb: "wait", options: ["waited", "were waiting", "wait", "have waited"], correct: "were waiting"},
-            {q: "The children ___ (sleep) when we arrived home.", verb: "sleep", options: ["slept", "were sleeping", "sleep", "have slept"], correct: "were sleeping"},
-            {q: "I ___ (listen) to music when the doorbell rang.", verb: "listen", options: ["listened", "was listening", "listen", "have listened"], correct: "was listening"},
-            {q: "He ___ (work) on his computer when the power went out.", verb: "work", options: ["worked", "was working", "works", "has worked"], correct: "was working"},
-            {q: "We ___ (dance) at the party when the music stopped.", verb: "dance", options: ["danced", "were dancing", "dance", "have danced"], correct: "were dancing"},
-            {q: "She ___ (talk) on the phone when I entered the room.", verb: "talk", options: ["talked", "was talking", "talks", "has talked"], correct: "was talking"},
-            {q: "They ___ (eat) lunch when the fire alarm sounded.", verb: "eat", options: ["ate", "were eating", "eat", "have eaten"], correct: "were eating"},
-            {q: "I ___ (take) a shower when someone rang the doorbell.", verb: "take", options: ["took", "was taking", "take", "have taken"], correct: "was taking"},
-            {q: "While he ___ (run) in the park, he twisted his ankle.", verb: "run", options: ["ran", "was running", "runs", "has run"], correct: "was running"},
-            {q: "The cat ___ (sleep) on the sofa when the dog barked.", verb: "sleep", options: ["slept", "was sleeping", "sleeps", "has slept"], correct: "was sleeping"},
-            {q: "I ___ (write) an email when my computer crashed.", verb: "write", options: ["wrote", "was writing", "write", "have written"], correct: "was writing"},
-            {q: "They ___ (watch) a movie when the electricity went off.", verb: "watch", options: ["watched", "were watching", "watch", "have watched"], correct: "were watching"},
-            {q: "She ___ (paint) the wall when she fell off the ladder.", verb: "paint", options: ["painted", "was painting", "paints", "has painted"], correct: "was painting"},
-            {q: "We ___ (shop) when we saw our neighbors.", verb: "shop", options: ["shopped", "were shopping", "shop", "have shopped"], correct: "were shopping"},
-            {q: "He ___ (fix) his bike when it started to rain.", verb: "fix", options: ["fixed", "was fixing", "fixes", "has fixed"], correct: "was fixing"},
-            {q: "I ___ (clean) my room when I found my lost wallet.", verb: "clean", options: ["cleaned", "was cleaning", "clean", "have cleaned"], correct: "was cleaning"},
-            {q: "While she ___ (swim) in the pool, she heard thunder.", verb: "swim", options: ["swam", "was swimming", "swims", "has swum"], correct: "was swimming"},
-            {q: "They ___ (build) a sandcastle when the wave destroyed it.", verb: "build", options: ["built", "were building", "build", "have built"], correct: "were building"},
-            {q: "I ___ (do) my homework when the phone rang.", verb: "do", options: ["did", "was doing", "do", "have done"], correct: "was doing"},
-            {q: "He ___ (sit) in the garden when it began to rain.", verb: "sit", options: ["sat", "was sitting", "sits", "has sat"], correct: "was sitting"},
-            {q: "We ___ (travel) to London when our car broke down.", verb: "travel", options: ["traveled", "were traveling", "travel", "have traveled"], correct: "were traveling"},
-            {q: "She ___ (prepare) breakfast when the toaster stopped working.", verb: "prepare", options: ["prepared", "was preparing", "prepares", "has prepared"], correct: "was preparing"},
-            {q: "The students ___ (take) the exam when the fire alarm went off.", verb: "take", options: ["took", "were taking", "take", "have taken"], correct: "were taking"},
-            {q: "I ___ (iron) my shirt when I burned it.", verb: "iron", options: ["ironed", "was ironing", "iron", "have ironed"], correct: "was ironing"},
-            {q: "While they ___ (argue), I left the room quietly.", verb: "argue", options: ["argued", "were arguing", "argue", "have argued"], correct: "were arguing"},
-            {q: "He ___ (carry) the boxes when he dropped one.", verb: "carry", options: ["carried", "was carrying", "carries", "has carried"], correct: "was carrying"},
-            {q: "We ___ (sing) karaoke when the power went out.", verb: "sing", options: ["sang", "were singing", "sing", "have sung"], correct: "were singing"},
-            {q: "She ___ (type) a report when her computer froze.", verb: "type", options: ["typed", "was typing", "types", "has typed"], correct: "was typing"},
-            {q: "I ___ (make) coffee when the kettle broke.", verb: "make", options: ["made", "was making", "make", "have made"], correct: "was making"},
-            {q: "They ___ (decorate) the room when the ladder fell.", verb: "decorate", options: ["decorated", "were decorating", "decorate", "have decorated"], correct: "were decorating"},
-            {q: "While he ___ (explain) the problem, I understood everything.", verb: "explain", options: ["explained", "was explaining", "explains", "has explained"], correct: "was explaining"},
-            {q: "The baby ___ (cry) when I picked her up.", verb: "cry", options: ["cried", "was crying", "cries", "has cried"], correct: "was crying"},
-            {q: "I ___ (print) documents when the printer jammed.", verb: "print", options: ["printed", "was printing", "print", "have printed"], correct: "was printing"},
-            {q: "She ___ (look) for her keys when she found them in her pocket.", verb: "look", options: ["looked", "was looking", "looks", "has looked"], correct: "was looking"},
-            {q: "We ___ (plan) our vacation when we got the news.", verb: "plan", options: ["planned", "were planning", "plan", "have planned"], correct: "were planning"},
-            {q: "He ___ (teach) the class when the principal entered.", verb: "teach", options: ["taught", "was teaching", "teaches", "has taught"], correct: "was teaching"},
-            {q: "While I ___ (think) about the answer, time ran out.", verb: "think", options: ["thought", "was thinking", "think", "have thought"], correct: "was thinking"},
-            {q: "They ___ (laugh) at the joke when I arrived.", verb: "laugh", options: ["laughed", "were laughing", "laugh", "have laughed"], correct: "were laughing"},
-            {q: "She ___ (climb) the stairs when she tripped.", verb: "climb", options: ["climbed", "was climbing", "climbs", "has climbed"], correct: "was climbing"},
-            {q: "I ___ (search) online when I found the perfect gift.", verb: "search", options: ["searched", "was searching", "search", "have searched"], correct: "was searching"},
-            {q: "While we ___ (discuss) the plan, he arrived late.", verb: "discuss", options: ["discussed", "were discussing", "discuss", "have discussed"], correct: "were discussing"},
-            {q: "He ___ (photograph) the sunset when his camera died.", verb: "photograph", options: ["photographed", "was photographing", "photographs", "has photographed"], correct: "was photographing"},
-            {q: "The dog ___ (bark) when the mailman came.", verb: "bark", options: ["barked", "was barking", "barks", "has barked"], correct: "was barking"},
-            {q: "I ___ (organize) my desk when I found an old photo.", verb: "organize", options: ["organized", "was organizing", "organize", "have organized"], correct: "was organizing"},
-            {q: "She ___ (practice) the piano when her neighbor complained.", verb: "practice", options: ["practiced", "was practicing", "practices", "has practiced"], correct: "was practicing"},
-            {q: "While they ___ (celebrate) the victory, the coach announced the news.", verb: "celebrate", options: ["celebrated", "were celebrating", "celebrate", "have celebrated"], correct: "were celebrating"},
-            {q: "He ___ (repair) the roof when it started raining.", verb: "repair", options: ["repaired", "was repairing", "repairs", "has repaired"], correct: "was repairing"},
-            {q: "We ___ (enjoy) the concert when the band stopped playing.", verb: "enjoy", options: ["enjoyed", "were enjoying", "enjoy", "have enjoyed"], correct: "were enjoying"},
-            {q: "I ___ (browse) through books when I found this rare edition.", verb: "browse", options: ["browsed", "was browsing", "browse", "have browsed"], correct: "was browsing"},
-            {q: "She ___ (water) the plants when she noticed the broken pot.", verb: "water", options: ["watered", "was watering", "waters", "has watered"], correct: "was watering"}
+            {q: "While I ___ (travel) around Europe, I ran out of money.", a: "was travelling"},
+            {q: "He ___ (check) his social media when the boss walked in.", a: "was checking"},
+            {q: "We ___ (walk) in the mountains when we saw a rare bird.", a: "were walking"},
+            {q: "I ___ (look) for a job when I found this great opportunity.", a: "was looking"},
+            {q: "She ___ (try) to upload a photo when her phone died.", a: "was trying"},
+            {q: "They ___ (wait) for the flight when they heard the announcement.", a: "were waiting"},
+            {q: "While he ___ (work) as a volunteer, he met his wife.", a: "was working"},
+            {q: "The sun ___ (shine) when we arrived at the beach.", a: "was shining"},
+            {q: "I ___ (listen) to a podcast when you called me.", a: "was listening"},
+            {q: "She ___ (write) an email when the internet stopped working.", a: "was writing"},
+            {q: "They ___ (discuss) the environment when the meeting started.", a: "were discussing"},
+            {q: "While I ___ (clean) my flat, I found my old passport.", a: "was cleaning"},
+            {q: "He ___ (take) a photo of the statue when a thief stole his bag.", a: "was taking"},
+            {q: "We ___ (have) a great conversation when the bus arrived.", a: "were having"},
+            {q: "I ___ (study) for my degree when I decided to move abroad.", a: "was studying"},
+            {q: "She ___ (shop) for souvenirs when she lost her credit card.", a: "was shopping"},
+            {q: "While they ___ (cross) the road, they saw the accident.", a: "were crossing"},
+            {q: "The children ___ (play) outside when it started to thunder.", a: "were playing"},
+            {q: "I ___ (read) a review of the book when I bought it.", a: "was reading"},
+            {q: "He ___ (drive) to the airport when his car broke down.", a: "was driving"},
+            {q: "While we ___ (prepare) for the presentation, the power went out.", a: "were preparing"},
+            {q: "She ___ (talk) to a colleague when the alarm rang.", a: "was talking"},
+            {q: "I ___ (wait) in the queue when I saw a famous actor.", a: "was waiting"},
+            {q: "They ___ (stay) in a hostel when they met other travelers.", a: "were staying"},
+            {q: "He ___ (climb) the mountain when he felt a sudden pain.", a: "was climbing"},
+            {q: "While I ___ (browse) the web, I found a cheap flight.", a: "was browsing"},
+            {q: "She ___ (wear) a beautiful dress when I saw her at the party.", a: "was wearing"},
+            {q: "We ___ (sit) in the garden when it began to rain.", a: "were sitting"},
+            {q: "They ___ (cook) a traditional meal when the guests arrived.", a: "were cooking"},
+            {q: "I ___ (run) in the park when I twisted my ankle.", a: "was running"},
+            {q: "He ___ (watch) a documentary when he fell asleep.", a: "was watching"},
+            {q: "While she ___ (organize) her desk, she found the document.", a: "was organizing"},
+            {q: "We ___ (look) at the map when a local person helped us.", a: "were looking"},
+            {q: "I ___ (paint) the kitchen when I ran out of paint.", a: "was painting"},
+            {q: "They ___ (play) cards when the lights went out.", a: "were playing"},
+            {q: "While he ___ (fix) his bike, he cut his finger.", a: "was fixing"},
+            {q: "She ___ (sleep) when the loud noise woke her up.", a: "was sleeping"},
+            {q: "I ___ (carry) the heavy bags when you opened the door.", a: "was carrying"},
+            {q: "We ___ (plan) our itinerary when we changed our minds.", a: "were planning"},
+            {q: "They ___ (dance) when the music suddenly stopped.", a: "were dancing"},
+            {q: "While I ___ (wash) my car, my neighbor said hello.", a: "was washing"},
+            {q: "He ___ (type) a message when he dropped his phone.", a: "was typing"},
+            {q: "She ___ (swim) in the ocean when she saw a dolphin.", a: "was swimming"},
+            {q: "We ___ (eat) lunch when the waiter dropped a plate.", a: "were eating"},
+            {q: "They ___ (search) for a hotel when they found a campsite.", a: "were searching"},
+            {q: "While I ___ (walk) to the station, I met an old friend.", a: "was walking"},
+            {q: "He ___ (listen) to the news when he heard the story.", a: "was listening"},
+            {q: "She ___ (exercise) in the gym when she felt dizzy.", a: "was exercising"},
+            {q: "We ___ (travel) by train when we saw the beautiful lake.", a: "were traveling"},
+            {q: "I ___ (use) my laptop when the battery ran out.", a: "was using"},
+            {q: "They ___ (discuss) the price when they reached an agreement.", a: "were discussing"},
+            {q: "While she ___ (pack) her suitcase, she forgot her shoes.", a: "was packing"},
+            {q: "He ___ (look) out the window when the rain started.", a: "was looking"},
+            {q: "We ___ (wait) for the bus when it passed us without stopping.", a: "were waiting"},
+            {q: "I ___ (make) a coffee when the kettle broke.", a: "was making"},
+            {q: "They ___ (ride) their bikes when they got lost.", a: "were riding"},
+            {q: "While he ___ (shop) for food, he found a new product.", a: "was shopping"},
+            {q: "She ___ (practice) her English when the teacher arrived.", a: "was practicing"},
+            {q: "I ___ (work) on the project when I got an idea.", a: "was working"},
+            {q: "We ___ (stand) in the rain when the taxi appeared.", a: "were standing"},
+            {q: "They ___ (talk) about the movie when I joined them.", a: "were talking"},
+            {q: "While I ___ (record) a video, the battery died.", a: "was recording"},
+            {q: "He ___ (sit) on the balcony when he saw the sunset.", a: "was sitting"},
+            {q: "She ___ (learn) to drive when she had the accident.", a: "was learning"},
+            {q: "We ___ (follow) the signs when we arrived at the museum.", a: "were following"},
+            {q: "I ___ (try) to sleep when the phone rang.", a: "was trying"},
+            {q: "They ___ (save) money when they decided to buy a car.", a: "were saving"},
+            {q: "While she ___ (blog) about her trip, she uploaded a video.", a: "was blogging"},
+            {q: "He ___ (read) the newspaper when he found the advert.", a: "was reading"},
+            {q: "We ___ (celebrate) his birthday when the cake arrived.", a: "were celebrating"}
         ];
 
-        let currentQuestions = [];
-        let currentQuestionIndex = 0;
-        let answers = [];
-        let correctAnswers = 0;
-        let timerInterval;
-        let timeLeft = 300; // 5 minutes in seconds
-        let studentName = "";
-
-        function shuffleArray(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
+        let selectedQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 300;
 
         function startQuiz() {
-            const nameInput = document.getElementById('studentName');
+            const name = document.getElementById('studentName').value;
+            if(!name) return alert("Please enter your name");
             
-            studentName = nameInput.value.trim();
-            
-            if (!studentName) {
-                alert('Please enter your name before starting the quiz.');
-                return;
-            }
-
-            currentQuestions = shuffleArray(questionBank).slice(0, 10);
-            answers = new Array(10).fill(null);
+            // Randomly shuffle all 70 and pick first 10
+            selectedQuestions = questionBank.sort(() => 0.5 - Math.random()).slice(0, 10);
             
             document.getElementById('startScreen').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
             
-            displayQuestion();
+            loadQuestion();
             startTimer();
         }
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                document.getElementById('timer').textContent = 
-                    `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-            }, 1000);
-        }
-
-        function displayQuestion() {
-            const question = currentQuestions[currentQuestionIndex];
-            document.getElementById('questionNumber').textContent = `Question ${currentQuestionIndex + 1}`;
-            document.getElementById('questionText').innerHTML = question.q.replace('___', '<span class="blank">___</span>');
-            
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach(option => {
-                const div = document.createElement('div');
-                div.className = 'option';
-                div.textContent = option;
-                if (answers[currentQuestionIndex] === option) {
-                    div.classList.add('selected');
-                }
-                div.onclick = () => selectOption(option);
-                optionsContainer.appendChild(div);
-            });
-            
-            updateNavigationButtons();
-            updateProgressBar();
-        }
-
-        function selectOption(option) {
-            answers[currentQuestionIndex] = option;
-            displayQuestion();
-        }
-
-        function updateProgressBar() {
-            const answered = answers.filter(a => a !== null).length;
-            
-            // Count correct and incorrect answers so far
-            let correct = 0;
-            let incorrect = 0;
-            
-            for (let i = 0; i < answers.length; i++) {
-                if (answers[i] !== null) {
-                    if (answers[i] === currentQuestions[i].correct) {
-                        correct++;
-                    } else {
-                        incorrect++;
-                    }
-                }
-            }
-            
-            const correctPercentage = (correct / 10) * 100;
-            const incorrectPercentage = (incorrect / 10) * 100;
-            
-            document.getElementById('progressBarCorrect').style.width = correctPercentage + '%';
-            document.getElementById('progressBarIncorrect').style.width = incorrectPercentage + '%';
-            document.getElementById('progressText').textContent = `${answered}/10 (✓${correct} ✗${incorrect})`;
-        }
-
-        function updateNavigationButtons() {
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            
-            if (currentQuestionIndex === 9) {
-                document.getElementById('nextBtn').style.display = 'none';
-                document.getElementById('submitBtn').style.display = 'block';
-            } else {
-                document.getElementById('nextBtn').style.display = 'block';
-                document.getElementById('submitBtn').style.display = 'none';
-            }
+        function loadQuestion() {
+            const q = selectedQuestions[currentIndex];
+            document.getElementById('questionNumber').innerText = `Question ${currentIndex + 1} of 10`;
+            document.getElementById('questionText').innerHTML = q.q.replace("___", `<input type="text" id="ans" class="answer-input" autocomplete="off">`);
+            document.getElementById('progressBar').style.width = (currentIndex * 10) + "%";
+            document.getElementById('ans').focus();
         }
 
         function nextQuestion() {
-            if (currentQuestionIndex < 9) {
-                currentQuestionIndex++;
-                displayQuestion();
+            const userAns = document.getElementById('ans').value.trim().toLowerCase();
+            const correctAns = selectedQuestions[currentIndex].a.toLowerCase();
+
+            if(userAns === correctAns) {
+                score++;
+                document.getElementById('correctSound').play();
+            } else {
+                document.getElementById('incorrectSound').play();
+            }
+
+            currentIndex++;
+            if(currentIndex < 10) {
+                loadQuestion();
+            } else {
+                finishQuiz();
             }
         }
 
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                displayQuestion();
-            }
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                let m = Math.floor(timeLeft/60);
+                let s = timeLeft%60;
+                document.getElementById('timer').innerText = `${m}:${s<10?'0'+s:s}`;
+                if(timeLeft <= 0) finishQuiz();
+            }, 1000);
         }
 
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            
-            correctAnswers = 0;
-            for (let i = 0; i < currentQuestions.length; i++) {
-                if (answers[i] === currentQuestions[i].correct) {
-                    correctAnswers++;
-                }
-            }
-            
-            const score = (correctAnswers / 10) * 100;
-            const timeTaken = 300 - timeLeft;
-            const minutes = Math.floor(timeTaken / 60);
-            const seconds = timeTaken % 60;
-            
-            sendToGoogleSheets(score, `${minutes}:${seconds.toString().padStart(2, '0')}`);
-            
+        function finishQuiz() {
+            clearInterval(timer);
             document.getElementById('quizContent').style.display = 'none';
             document.getElementById('results').style.display = 'block';
-            
-            const scoreElement = document.getElementById('finalScore');
-            scoreElement.textContent = `${correctAnswers}/10 (${score}%)`;
-            
-            if (score >= 70) {
-                scoreElement.className = 'score';
-                document.getElementById('resultMessage').textContent = 'Great job! You passed! 🎉';
-            } else {
-                scoreElement.className = 'score fail';
-                document.getElementById('resultMessage').textContent = 'Keep practicing! You can do better! 💪';
-            }
-        }
-
-        function sendToGoogleSheets(score, timeTaken) {
-            const formData = new FormData();
-            formData.append('name', studentName);
-            formData.append('score', score);
-            formData.append('correctAnswers', correctAnswers);
-            formData.append('timeTaken', timeTaken);
-            formData.append('date', new Date().toLocaleString());
-            formData.append('quizType', 'Past Simple vs Past Continuous');
-            
-            // Google Apps Script Web App URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzvhd9K2CVC9_EPkhAEYFDp8K1CBpGUWNrEAEVC4w4Q8eHh5uDFO_aaKPMcH-Tajv5U/exec';
-            
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message));
+            document.getElementById('finalScore').innerText = `${score}/10`;
+            document.getElementById('feedbackText').innerText = score >= 7 ? "Excellent Progress!" : "Review Chapter 2 and try again!";
         }
     </script>
 </body>
