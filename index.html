@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigate Pre-Intermediate: Past Tense Challenge</title>
     <style>
-        /* ... All your existing styles stay exactly the same ... */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -100,7 +99,7 @@
 
     <script>
         const questionBank = [
-            // MIXED: WHILE/WHEN (Continuous and Simple)
+            // MIXED CLAUSES
             {q: "While I ___ (travel) around Europe, I ran out of money.", a: "was travelling"},
             {q: "He was checking his social media when the boss ___ (walk) in.", a: "walked"},
             {q: "We ___ (walk) in the mountains when we saw a rare bird.", a: "were walking"},
@@ -112,7 +111,7 @@
             {q: "I was listening to a podcast when you ___ (call) me.", a: "called"},
             {q: "She ___ (write) an email when the internet stopped working.", a: "was writing"},
             
-            // SIMPLE SENTENCES (No complex clauses)
+            // SIMPLE SENTENCES
             {q: "Last night, I ___ (go) to the cinema with my friends.", a: "went"},
             {q: "At 8 o'clock yesterday morning, I ___ (have) breakfast.", a: "was having"},
             {q: "Yesterday, she ___ (buy) a new pair of shoes.", a: "bought"},
@@ -124,7 +123,7 @@
             {q: "It ___ (rain) all day yesterday, so we stayed inside.", a: "was raining"},
             {q: "We ___ (finish) the project late last night.", a: "finished"},
 
-            // MORE MIXED CLAUSES
+            // MORE MIXED EXAMPLES
             {q: "I ___ (clean) my flat when I found my old passport.", a: "was cleaning"},
             {q: "He took a photo of the statue while the sun ___ (set).", a: "was setting"},
             {q: "We were having a conversation when the bus ___ (arrive).", a: "arrived"},
@@ -144,42 +143,7 @@
             {q: "We ___ (sit) in the garden when it began to rain.", a: "were sitting"},
             {q: "They were cooking a meal when the guests ___ (arrive).", a: "arrived"},
             {q: "I ___ (run) in the park when I twisted my ankle.", a: "was running"},
-            {q: "He was watching a documentary when he ___ (fall) asleep.", a: "fell"},
-            {q: "While she ___ (organize) her desk, she found the document.", a: "was organizing"},
-            {q: "We ___ (look) at the map when a local person helped us.", a: "were looking"},
-            {q: "I was painting the kitchen when I ___ (drop) the brush.", a: "dropped"},
-            {q: "They ___ (play) cards when the lights went out.", a: "were playing"},
-            {q: "While he ___ (fix) his bike, he cut his finger.", a: "was fixing"},
-            {q: "She was sleeping when the loud noise ___ (wake) her up.", a: "woke"},
-            {q: "I ___ (carry) the heavy bags when you opened the door.", a: "was carrying"},
-            {q: "We were planning our trip when we ___ (hear) the news.", a: "heard"},
-            {q: "They ___ (dance) when the music suddenly stopped.", a: "were dancing"},
-            {q: "While I was washing my car, my neighbor ___ (say) hello.", a: "said"},
-            {q: "He ___ (type) a message when he dropped his phone.", a: "was typing"},
-            {q: "She was swimming in the ocean when she ___ (see) a shark.", a: "saw"},
-            {q: "We ___ (eat) lunch when the waiter dropped a plate.", a: "were eating"},
-            {q: "They were searching for a hotel when they ___ (find) this place.", a: "found"},
-            {q: "While I ___ (walk) to the station, I met an old friend.", a: "was walking"},
-            {q: "He was listening to the news when he ___ (hear) the story.", a: "heard"},
-            {q: "She ___ (exercise) in the gym when she felt dizzy.", a: "was exercising"},
-            {q: "We ___ (travel) by train when we saw the beautiful lake.", a: "were traveling"},
-            {q: "I was using my laptop when the battery ___ (run) out.", a: "ran"},
-            {q: "They were discussing the price when they ___ (reach) an agreement.", a: "reached"},
-            {q: "While she ___ (pack) her suitcase, she realized she lost her keys.", a: "was packing"},
-            {q: "He was looking out the window when the rain ___ (start).", a: "started"},
-            {q: "We ___ (wait) for the bus when it passed us without stopping.", a: "were waiting"},
-            {q: "I was making a coffee when the kettle ___ (break).", a: "broke"},
-            {q: "They ___ (ride) their bikes when they got lost.", a: "were riding"},
-            {q: "While he ___ (shop) for food, he saw his teacher.", a: "was shopping"},
-            {q: "She was practicing her English when the guest ___ (arrive).", a: "arrived"},
-            {q: "I ___ (work) on the project when I got an idea.", a: "was working"},
-            {q: "We were standing in the rain when the taxi ___ (appear).", a: "appeared"},
-            {q: "They ___ (talk) about the movie when I joined them.", a: "were talking"},
-            {q: "While I ___ (record) a video, the battery died.", a: "was recording"},
-            {q: "He was sitting on the balcony when he ___ (hear) a shout.", a: "heard"},
-            {q: "She ___ (learn) to drive when she was 18.", a: "was learning"},
-            {q: "We were following the signs when we ___ (get) lost.", a: "got"},
-            {q: "I ___ (try) to sleep when the phone suddenly rang.", a: "was trying"}
+            {q: "He was watching a documentary when he ___ (fall) asleep.", a: "fell"}
         ];
 
         let selectedQuestions = [];
@@ -207,8 +171,7 @@
             document.getElementById('questionText').innerHTML = q.q.replace("___", `<input type="text" id="ans" class="answer-input" autocomplete="off">`);
             document.getElementById('progressBar').style.width = (currentIndex * 10) + "%";
             document.getElementById('ans').focus();
-            
-            // Allow Enter key to submit
+
             document.getElementById('ans').addEventListener("keypress", function(event) {
                 if (event.key === "Enter") {
                     event.preventDefault();
@@ -218,7 +181,10 @@
         }
 
         function nextQuestion() {
-            const userAns = document.getElementById('ans').value.trim().toLowerCase();
+            const inputField = document.getElementById('ans');
+            if(!inputField) return;
+
+            const userAns = inputField.value.trim().toLowerCase();
             const correctAns = selectedQuestions[currentIndex].a.toLowerCase();
 
             if(userAns === correctAns) {
@@ -248,6 +214,23 @@
 
         function finishQuiz() {
             clearInterval(timer);
+            
+            const studentName = document.getElementById('studentName').value;
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyuUIWd-xGjo03kApGH-nxIEjLvBCQPukUdKaYbFWLfhPJHnHUBiyXX7VGc2Xx4OkNx/exec';
+
+            // Send data to Google Sheet
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                cache: 'no-cache',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: studentName,
+                    score: `${score}/10`
+                })
+            }).catch(err => console.error("Data tracking error:", err));
+
+            // Show results UI
             document.getElementById('quizContent').style.display = 'none';
             document.getElementById('results').style.display = 'block';
             document.getElementById('finalScore').innerText = `${score}/10`;
