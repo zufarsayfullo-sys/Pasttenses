@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigate Pre-Intermediate: Past Tense Challenge</title>
     <style>
+        /* ... All your existing styles stay exactly the same ... */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -99,76 +100,86 @@
 
     <script>
         const questionBank = [
+            // MIXED: WHILE/WHEN (Continuous and Simple)
             {q: "While I ___ (travel) around Europe, I ran out of money.", a: "was travelling"},
-            {q: "He ___ (check) his social media when the boss walked in.", a: "was checking"},
+            {q: "He was checking his social media when the boss ___ (walk) in.", a: "walked"},
             {q: "We ___ (walk) in the mountains when we saw a rare bird.", a: "were walking"},
-            {q: "I ___ (look) for a job when I found this great opportunity.", a: "was looking"},
-            {q: "She ___ (try) to upload a photo when her phone died.", a: "was trying"},
-            {q: "They ___ (wait) for the flight when they heard the announcement.", a: "were waiting"},
-            {q: "While he ___ (work) as a volunteer, he met his wife.", a: "was working"},
-            {q: "The sun ___ (shine) when we arrived at the beach.", a: "was shining"},
-            {q: "I ___ (listen) to a podcast when you called me.", a: "was listening"},
+            {q: "I was looking for a job when I ___ (find) this opportunity.", a: "found"},
+            {q: "She was trying to upload a photo when her phone ___ (die).", a: "died"},
+            {q: "While they ___ (wait) for the flight, they heard the news.", a: "were waiting"},
+            {q: "He ___ (meet) his wife while he was working as a volunteer.", a: "met"},
+            {q: "The sun was shining when we ___ (arrive) at the beach.", a: "arrived"},
+            {q: "I was listening to a podcast when you ___ (call) me.", a: "called"},
             {q: "She ___ (write) an email when the internet stopped working.", a: "was writing"},
-            {q: "They ___ (discuss) the environment when the meeting started.", a: "were discussing"},
-            {q: "While I ___ (clean) my flat, I found my old passport.", a: "was cleaning"},
-            {q: "He ___ (take) a photo of the statue when a thief stole his bag.", a: "was taking"},
-            {q: "We ___ (have) a great conversation when the bus arrived.", a: "were having"},
+            
+            // SIMPLE SENTENCES (No complex clauses)
+            {q: "Last night, I ___ (go) to the cinema with my friends.", a: "went"},
+            {q: "At 8 o'clock yesterday morning, I ___ (have) breakfast.", a: "was having"},
+            {q: "Yesterday, she ___ (buy) a new pair of shoes.", a: "bought"},
+            {q: "They ___ (not/be) at home when I knocked on the door.", a: "were not"},
+            {q: "Two days ago, he ___ (lose) his wallet in the park.", a: "lost"},
+            {q: "What ___ (you/do) at 10 p.m. last Saturday?", a: "were you doing"},
+            {q: "The company ___ (start) in 1995.", a: "started"},
+            {q: "I ___ (see) a famous actor at the airport yesterday.", a: "saw"},
+            {q: "It ___ (rain) all day yesterday, so we stayed inside.", a: "was raining"},
+            {q: "We ___ (finish) the project late last night.", a: "finished"},
+
+            // MORE MIXED CLAUSES
+            {q: "I ___ (clean) my flat when I found my old passport.", a: "was cleaning"},
+            {q: "He took a photo of the statue while the sun ___ (set).", a: "was setting"},
+            {q: "We were having a conversation when the bus ___ (arrive).", a: "arrived"},
             {q: "I ___ (study) for my degree when I decided to move abroad.", a: "was studying"},
-            {q: "She ___ (shop) for souvenirs when she lost her credit card.", a: "was shopping"},
+            {q: "She lost her credit card while she ___ (shop) for souvenirs.", a: "was shopping"},
             {q: "While they ___ (cross) the road, they saw the accident.", a: "were crossing"},
-            {q: "The children ___ (play) outside when it started to thunder.", a: "were playing"},
-            {q: "I ___ (read) a review of the book when I bought it.", a: "was reading"},
-            {q: "He ___ (drive) to the airport when his car broke down.", a: "was driving"},
-            {q: "While we ___ (prepare) for the presentation, the power went out.", a: "were preparing"},
+            {q: "The children were playing outside when it ___ (start) to thunder.", a: "started"},
+            {q: "I ___ (read) a review of the book before I bought it.", a: "was reading"},
+            {q: "He was driving to the airport when his car ___ (break) down.", a: "broke"},
+            {q: "While we ___ (prepare) the food, the power went out.", a: "were preparing"},
             {q: "She ___ (talk) to a colleague when the alarm rang.", a: "was talking"},
-            {q: "I ___ (wait) in the queue when I saw a famous actor.", a: "was waiting"},
+            {q: "I was waiting in the queue when I ___ (see) a famous actor.", a: "saw"},
             {q: "They ___ (stay) in a hostel when they met other travelers.", a: "were staying"},
-            {q: "He ___ (climb) the mountain when he felt a sudden pain.", a: "was climbing"},
+            {q: "He was climbing the mountain when he ___ (feel) a sudden pain.", a: "felt"},
             {q: "While I ___ (browse) the web, I found a cheap flight.", a: "was browsing"},
-            {q: "She ___ (wear) a beautiful dress when I saw her at the party.", a: "was wearing"},
+            {q: "She was wearing a beautiful dress when I ___ (see) her.", a: "saw"},
             {q: "We ___ (sit) in the garden when it began to rain.", a: "were sitting"},
-            {q: "They ___ (cook) a traditional meal when the guests arrived.", a: "were cooking"},
+            {q: "They were cooking a meal when the guests ___ (arrive).", a: "arrived"},
             {q: "I ___ (run) in the park when I twisted my ankle.", a: "was running"},
-            {q: "He ___ (watch) a documentary when he fell asleep.", a: "was watching"},
+            {q: "He was watching a documentary when he ___ (fall) asleep.", a: "fell"},
             {q: "While she ___ (organize) her desk, she found the document.", a: "was organizing"},
             {q: "We ___ (look) at the map when a local person helped us.", a: "were looking"},
-            {q: "I ___ (paint) the kitchen when I ran out of paint.", a: "was painting"},
+            {q: "I was painting the kitchen when I ___ (drop) the brush.", a: "dropped"},
             {q: "They ___ (play) cards when the lights went out.", a: "were playing"},
             {q: "While he ___ (fix) his bike, he cut his finger.", a: "was fixing"},
-            {q: "She ___ (sleep) when the loud noise woke her up.", a: "was sleeping"},
+            {q: "She was sleeping when the loud noise ___ (wake) her up.", a: "woke"},
             {q: "I ___ (carry) the heavy bags when you opened the door.", a: "was carrying"},
-            {q: "We ___ (plan) our itinerary when we changed our minds.", a: "were planning"},
+            {q: "We were planning our trip when we ___ (hear) the news.", a: "heard"},
             {q: "They ___ (dance) when the music suddenly stopped.", a: "were dancing"},
-            {q: "While I ___ (wash) my car, my neighbor said hello.", a: "was washing"},
+            {q: "While I was washing my car, my neighbor ___ (say) hello.", a: "said"},
             {q: "He ___ (type) a message when he dropped his phone.", a: "was typing"},
-            {q: "She ___ (swim) in the ocean when she saw a dolphin.", a: "was swimming"},
+            {q: "She was swimming in the ocean when she ___ (see) a shark.", a: "saw"},
             {q: "We ___ (eat) lunch when the waiter dropped a plate.", a: "were eating"},
-            {q: "They ___ (search) for a hotel when they found a campsite.", a: "were searching"},
+            {q: "They were searching for a hotel when they ___ (find) this place.", a: "found"},
             {q: "While I ___ (walk) to the station, I met an old friend.", a: "was walking"},
-            {q: "He ___ (listen) to the news when he heard the story.", a: "was listening"},
+            {q: "He was listening to the news when he ___ (hear) the story.", a: "heard"},
             {q: "She ___ (exercise) in the gym when she felt dizzy.", a: "was exercising"},
             {q: "We ___ (travel) by train when we saw the beautiful lake.", a: "were traveling"},
-            {q: "I ___ (use) my laptop when the battery ran out.", a: "was using"},
-            {q: "They ___ (discuss) the price when they reached an agreement.", a: "were discussing"},
-            {q: "While she ___ (pack) her suitcase, she forgot her shoes.", a: "was packing"},
-            {q: "He ___ (look) out the window when the rain started.", a: "was looking"},
+            {q: "I was using my laptop when the battery ___ (run) out.", a: "ran"},
+            {q: "They were discussing the price when they ___ (reach) an agreement.", a: "reached"},
+            {q: "While she ___ (pack) her suitcase, she realized she lost her keys.", a: "was packing"},
+            {q: "He was looking out the window when the rain ___ (start).", a: "started"},
             {q: "We ___ (wait) for the bus when it passed us without stopping.", a: "were waiting"},
-            {q: "I ___ (make) a coffee when the kettle broke.", a: "was making"},
+            {q: "I was making a coffee when the kettle ___ (break).", a: "broke"},
             {q: "They ___ (ride) their bikes when they got lost.", a: "were riding"},
-            {q: "While he ___ (shop) for food, he found a new product.", a: "was shopping"},
-            {q: "She ___ (practice) her English when the teacher arrived.", a: "was practicing"},
+            {q: "While he ___ (shop) for food, he saw his teacher.", a: "was shopping"},
+            {q: "She was practicing her English when the guest ___ (arrive).", a: "arrived"},
             {q: "I ___ (work) on the project when I got an idea.", a: "was working"},
-            {q: "We ___ (stand) in the rain when the taxi appeared.", a: "were standing"},
+            {q: "We were standing in the rain when the taxi ___ (appear).", a: "appeared"},
             {q: "They ___ (talk) about the movie when I joined them.", a: "were talking"},
             {q: "While I ___ (record) a video, the battery died.", a: "was recording"},
-            {q: "He ___ (sit) on the balcony when he saw the sunset.", a: "was sitting"},
-            {q: "She ___ (learn) to drive when she had the accident.", a: "was learning"},
-            {q: "We ___ (follow) the signs when we arrived at the museum.", a: "were following"},
-            {q: "I ___ (try) to sleep when the phone rang.", a: "was trying"},
-            {q: "They ___ (save) money when they decided to buy a car.", a: "were saving"},
-            {q: "While she ___ (blog) about her trip, she uploaded a video.", a: "was blogging"},
-            {q: "He ___ (read) the newspaper when he found the advert.", a: "was reading"},
-            {q: "We ___ (celebrate) his birthday when the cake arrived.", a: "were celebrating"}
+            {q: "He was sitting on the balcony when he ___ (hear) a shout.", a: "heard"},
+            {q: "She ___ (learn) to drive when she was 18.", a: "was learning"},
+            {q: "We were following the signs when we ___ (get) lost.", a: "got"},
+            {q: "I ___ (try) to sleep when the phone suddenly rang.", a: "was trying"}
         ];
 
         let selectedQuestions = [];
@@ -181,7 +192,6 @@
             const name = document.getElementById('studentName').value;
             if(!name) return alert("Please enter your name");
             
-            // Randomly shuffle all 70 and pick first 10
             selectedQuestions = questionBank.sort(() => 0.5 - Math.random()).slice(0, 10);
             
             document.getElementById('startScreen').style.display = 'none';
@@ -197,6 +207,14 @@
             document.getElementById('questionText').innerHTML = q.q.replace("___", `<input type="text" id="ans" class="answer-input" autocomplete="off">`);
             document.getElementById('progressBar').style.width = (currentIndex * 10) + "%";
             document.getElementById('ans').focus();
+            
+            // Allow Enter key to submit
+            document.getElementById('ans').addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    nextQuestion();
+                }
+            });
         }
 
         function nextQuestion() {
